@@ -1,31 +1,15 @@
 package introductiontodesignpatterns.answer;
 
-import introductiontodesignpatterns.dao.AnswerDao;
+public interface Answer {
+	String getCompany();
 
-public class Answer {
-	private AnswerDao answerDao = new AnswerDao();
+	String getAddressTokyo();
 
-	public String getCompany() {
-		return answerDao.getResouce("company");
-	}
+	String getAddressOsaka();
 
-	public String getAddressTokyo() {
-		return answerDao.getResouce("address_tokyo");
-	}
+	String getHolyday();
 
-	public String getAddressOsaka() {
-		return answerDao.getResouce("address_osaka");
-	}
+	String getEvents();
 
-	public String getHolyday() {
-		return answerDao.getResouce("holyday");
-	}
-
-	public String getEvents() {
-		return answerDao.getResouce("events");
-	}
-
-	public String getStudyMeeting() {
-		return answerDao.getResouce("study_meeting");
-	}
+	String getStudyMeeting();
 }
