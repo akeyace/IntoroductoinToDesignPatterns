@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import introductiontodesignpatterns.answer.Answer;
+import introductiontodesignpatterns.answer.RealAnswer;
 import introductiontodesignpatterns.enums.ProjectStatus;
 import introductiontodesignpatterns.enums.QuestionType;
 import introductiontodesignpatterns.proengineer.ProEngineer;
@@ -52,7 +53,7 @@ public abstract class PEEmployee implements Employee {
 
 	public static String ask(QuestionType qType) {
 		if (answer == null) {
-			answer = new Answer();
+			answer = new RealAnswer();
 		}
 
 		switch (qType) {
