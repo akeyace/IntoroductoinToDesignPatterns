@@ -1,6 +1,9 @@
 package introductiontodesignpatterns.dao;
 
 public class AnswerDao {
+	public AnswerDao() {
+		System.out.println("--- データベース接続準備処理等 ※めちゃくちゃ重い処理 ---");
+	}
 
 	/*
 	 * DB に接続して値を取得する
