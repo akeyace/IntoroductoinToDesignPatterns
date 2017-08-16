@@ -27,7 +27,7 @@ public class Main {
 		System.out.println(tanaka.askToEmployee(QuestionType.STUDY_MEETING));
 
 		// 案件情報をセット
-		Nagata.call().setWorkInformation(1, "java案件", "Spring フレームワーク");
+		Nagata.call().setWorkInformation(1, "java案件", "Spring フレームワーク", "働き易い案件", 600000);
 		// 案件情報を取得
 		System.out.println(Nagata.call().getWorkInfo(1));
 
