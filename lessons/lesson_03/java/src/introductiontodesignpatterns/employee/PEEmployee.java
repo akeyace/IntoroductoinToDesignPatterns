@@ -10,6 +10,7 @@ import introductiontodesignpatterns.enums.ProjectStatus;
 import introductiontodesignpatterns.enums.QuestionType;
 import introductiontodesignpatterns.proengineer.ProEngineer;
 import introductiontodesignpatterns.project.Project;
+import introductiontodesignpatterns.workinformation.ConcreteWorkInformation;
 import introductiontodesignpatterns.workinformation.WorkInformation;
 
 public abstract class PEEmployee implements Employee {
@@ -33,7 +34,7 @@ public abstract class PEEmployee implements Employee {
 	}
 
 	public void setWorkInformation(Number id, String workName, String detail) {
-		workInformations.put(id, new WorkInformation(workName, detail));
+		workInformations.put(id, new ConcreteWorkInformation(workName, detail));
 	}
 
 	public void passWorkInfo(Number id, Employee employee) {
@@ -48,7 +49,8 @@ public abstract class PEEmployee implements Employee {
 	public ArrayList<String> getWorkInfo(Number id) {
 		WorkInformation workInformation = workInformations.get(id);
 
-		return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail()));
+		return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail(),
+				workInformation.getOptions().toString()));
 	}
 
 	public static String ask(QuestionType qType) {

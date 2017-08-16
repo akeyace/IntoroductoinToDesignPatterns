@@ -1,31 +1,19 @@
 package introductiontodesignpatterns.workinformation;
 
-public class WorkInformation {
-	String workName;
-	String detail;
+import java.util.HashMap;
 
-	public WorkInformation(String workName, String detail) {
-		setWorkInformation(workName, detail);
-	}
+public interface WorkInformation {
+	void setWorkInformation(String workName, String detail);
 
-	public void setWorkInformation(String workName, String detail) {
-		setWorkName(workName);
-		setDetail(detail);
-	}
+	String getWorkName();
 
-	public String getWorkName() {
-		return workName;
-	}
+	void setWorkName(String workName);
 
-	public void setWorkName(String workName) {
-		this.workName = workName;
-	}
+	String getDetail();
 
-	public String getDetail() {
-		return detail;
-	}
+	void setDetail(String detail);
 
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
+	HashMap<String, String> getOptions();
+
+	void setOptions(String key, String value);
 }
