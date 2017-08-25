@@ -326,6 +326,7 @@ System.out.println(Ueda.call().getWorkInfo(1));
 ---
 
   - AnswerProxy クラスを追加
+
 ```java
 package introductiontodesignpatterns.answer;
 
@@ -364,6 +365,7 @@ public class AnswerProxy implements Answer{
   }
 }
 ````
+
 ---
 
   - 永田クラスのコンストラクタの Answer インスタンスを AnswerProxy に変更  
