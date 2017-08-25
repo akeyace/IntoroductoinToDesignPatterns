@@ -1,4 +1,4 @@
-# デザインパターン入門 第三回 Proxy パターンと Decorator パターン
+### デザインパターン入門 第三回 Proxy パターンと Decorator パターン
 
 今回はデザインパターンから、 Proxy パターンと Decorator パターンを習得しましょう！
 
@@ -7,6 +7,7 @@
 ## 事前準備
 今回は UML を扱うのに ディファクトスタンダードな、Astah Community を使います。
 各自 DL をお願い致します。
+
 http://astah.change-vision.com/ja/product/astah-community.html
 
 デザインパターンをより解りやすくするため、PE-BANK の業務を UML化！
@@ -16,13 +17,17 @@ http://astah.change-vision.com/ja/product/astah-community.html
 ## PE-BANK クラス図について
 
 こちらを開いて下さい。
+
 [PE-BANK UML図 初期状態](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_01/lessons/lesson_03)
+
 PE-BANK の組織をクラス図として表しています。
 
 ---
 
 ### interface について
 OPP の概念として **interface を使う**事が**非常に重要**。
+
+---
 
 - interface を使わない場合  
   ```java
@@ -57,12 +62,14 @@ OPP の概念として **interface を使う**事が**非常に重要**。
   }
   ```
 
-この様に OPP の仕様をより理解することで開発効率の大幅な向上が見込めます。
+#### この様に OPP の仕様をより理解することで開発効率の大幅な向上が見込めます。
 
 ---
 
-## PE-BANK クラス図に実際の業務を追加
+### PE-BANK クラス図に実際の業務を追加
 それでは、PE-BANK クラス図を拡張していきましょう。
+
+---
 
 今回は……
 - PE と PE社員で契約を結べるようにする
@@ -76,12 +83,22 @@ OPP の概念として **interface を使う**事が**非常に重要**。
   - PE社員に、案件紹介メソッドを追加
   - PE に案件受取メソッドを追加
   - PE に案件承認メソッドを追加
+
+---
+
+### 案件処理を追加
+
 - 案件紹介の元となるプロジェクトを追加
   - プロジェクトクラスを追加
   - プロジェクトに状態を追加
     - プロジェクトステータス enum を追加
   - プロジェクトに状態設定メソッドを追加
   - プロジェクトに状態取得メソッドを追加
+
+---
+
+### 案件処理を追加
+
 - プロジェクト参画処理を追加
   - PE社員に PE 参画メソッドを追加
   - プロジェクトに PE 参画メソッドを追加
@@ -109,14 +126,16 @@ OPP の概念として **interface を使う**事が**非常に重要**。
 それでは、修正されたクラス図を見てみましょう。
 [PE-BANK UML図 上記修正分を追加](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_02/lessons/lesson_03)`
 
-## ソースコードを確認
+---
+
+### ソースコードを確認
 上記の処理のソースコードはこちら
 
 [PE-BANK UML図 ソースコード](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_03/lessons/lesson_03/java/src/introductiontodesignpatterns)
 
 ---
 
-### ソースコードを clone して 実行してみましょう！
+#### ソースコードを clone して 実行してみましょう！
 
 ```bash
 // 新しく clone する場合
@@ -127,7 +146,7 @@ git checkout lesson_03_03
 
 ---
 
-### Eclipse で開く
+#### Eclipse で開く
 1. Eclipse で 『ファイル』→ 『新規』 → 『Java プロジェクト』を実行
 1. プロジェクト名に『IntroductionToDesignPatterns』 を指定
 1. ロケーションにclone したディレクトリ  (IntoroductoinToDesignPatterns/lessons/lesson_03/java/) を指定
@@ -136,20 +155,19 @@ git checkout lesson_03_03
 
 ---
 
-### Main.java に処理を追加
+### Main.java に処理を追加していきましょう！
+
+---
+
 #### 田中さんに案件を渡してみる
 ```java
 // 田中さんのインスタンス生成
 Tanaka tanaka = new Tanaka();
 
----
-
 // 永田さん、新規案件を田中さんに提案
 Nagata.call().proposalProject(tanaka, new JavaProject());
 // 案件の状態確認
 System.out.println(tanaka.getCurrentProject().getStatus());
-
----
 
 // 案件に同意
 tanaka.agreeProject();
@@ -211,6 +229,11 @@ System.out.println(Ueda.call().getWorkInfo(1));
   - あるオブジェクトへのアクセスを制御するために、そのオブジェクトの代理、または入れ物を提供する
 - 別名
   - Surrogate
+
+---
+
+## Proxy パターン
+
 - 動機（意訳)
   - ある生成コストの高い処理、オブジェクトが存在する時に、その処理をすべて読み込むのではなく、Proxy オブジェクトを呼び出された時に初めて高コストのオブジェクトを生成することで処理コストを軽減したい。  
 また重い処理の代わりに、より軽い処理で要求を返したい。  
@@ -218,11 +241,15 @@ System.out.println(Ueda.call().getWorkInfo(1));
 
 ---
 
+## Proxy パターン
+
 - 適用可能性
   - コストの高いオブジェクトを要求があり次第生成したい (virtual proxy)
   - 実オブジェクトへのアクセスを制御したい (protection proxy)
 
 ---
+
+## Proxy パターン
 
 - クラス図  
 ![800px-proxy_pattern_diagram svg](https://user-images.githubusercontent.com/1944039/29357586-0846f9f2-82b3-11e7-8b0b-e70051cfcf5b.png)
@@ -230,20 +257,40 @@ System.out.println(Ueda.call().getWorkInfo(1));
 
 ---
 
+## Proxy パターン
+
 - 構成要素
   - Proxy クラス
     - RealSubject クラスにアクセスするための参照を保持する
     - RealSubject へのアクセスを制御し、時にRealSubject の処理を代行する
+
+---
+
+## Proxy パターン
+
+- 構成要素
   - Subject クラス
     - RealSubject クラスを利用する際に Proxy オブジェクトを利用出来るようにするための RealSubject クラスと Proxy クラスの共通インタフェース
+---
+
+## Proxy パターン
+
+- 構成要素
   - RealSubject クラス
     - Proxy オブジェクトが代理を務めることになる実オブジェクト
+
+---
+
+## Proxy パターン
+
+- 構成要素
 - 結果
   - Proxy パターンを用いることで、実オブジェクトへの参照が間接的になり、必要な処理が生じた場合のみ実オブジェクト生成、処理の追加、より低コストの処理を行う等が可能になる
 
 ---
 
 ### Proxy パターンを適用する
+
 それでは、Proxy パターンを適用してみましょう。
 今回適用出来そうな場所はどこでしょう？
 
@@ -251,8 +298,7 @@ System.out.println(Ueda.call().getWorkInfo(1));
 
 ---
 
-
-# そう！質問(Answer) クラス です！
+## そう！質問(Answer) クラス です！
 
 ---
 
@@ -262,6 +308,8 @@ System.out.println(Ueda.call().getWorkInfo(1));
   - 質問 クラスのステレオタイプにインタフェースを追加
   - 質問(Real)を追加し、質問インタフェースを実現する
   - 質問(Proxy) クラスを追加
+
+---
 
 修正後のクラス図はこちらになります。
 [PE-BANK UML図 Proxy パターンを適用](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_04/lessons/lesson_03)
@@ -278,44 +326,44 @@ System.out.println(Ueda.call().getWorkInfo(1));
 ---
 
   - AnswerProxy クラスを追加
-      ```java
-      package introductiontodesignpatterns.answer;
-      
-      public class AnswerProxy implements Answer{
-          private Answer answer;
-      
-          private Answer getAnswer() {
-              if (answer == null) {
-                  answer = new RealAnswer();
-              }
-              return answer;
-          }
-      
-          public String getCompany() {
-              return "PE-BANKやで";
-          }
-      
-          public String getAddressTokyo() {
-              return getAnswer().getAddressTokyo();
-          }
-      
-          public String getAddressOsaka() {
-              return "北浜やで";
-          }
-      
-          public String getHolyday() {
-              return "8月は山の日が休みやったで";
-          }
-      
-          public String getEvents() {
-              return getAnswer().getEvents();
-          }
-      
-          public String getStudyMeeting() {
-              return "今日 Java の勉強会あるで";
-          }
+```java
+package introductiontodesignpatterns.answer;
+
+public class AnswerProxy implements Answer{
+  private Answer answer;
+
+  private Answer getAnswer() {
+      if (answer == null) {
+	  answer = new RealAnswer();
       }
-      ````
+      return answer;
+  }
+
+  public String getCompany() {
+      return "PE-BANKやで";
+  }
+
+  public String getAddressTokyo() {
+      return getAnswer().getAddressTokyo();
+  }
+
+  public String getAddressOsaka() {
+      return "北浜やで";
+  }
+
+  public String getHolyday() {
+      return "8月は山の日が休みやったで";
+  }
+
+  public String getEvents() {
+      return getAnswer().getEvents();
+  }
+
+  public String getStudyMeeting() {
+      return "今日 Java の勉強会あるで";
+  }
+}
+````
 ---
 
   - 永田クラスのコンストラクタの Answer インスタンスを AnswerProxy に変更  
@@ -326,19 +374,25 @@ System.out.println(Ueda.call().getWorkInfo(1));
     +	answer = new AnswerProxy();
     }
     ```
+
+---
+
   - 上田クラスのコンストラクタの Answer インスタンスを RealAnswer に変更
   - PEEmployee クラスの Answer インスタンス生成箇所を RealAnswer  に変更
 
 ---
 
-実行してログを確認すると、AnswerDao が生成されるタイミングが「System.out.println(tanaka.askToEmployee(QuestionType.ADDRESS_TOKYO));」になっている事が解ります。
+実行してログを確認すると、AnswerDao が生成されるタイミングが
+「System.out.println(tanaka.askToEmployee(QuestionType.ADDRESS_TOKYO));」
+になっている事が解ります。
 
 ---
 
 ### Proxy パターン まとめ
-この様にインスタンス生成タイミングを処理が呼ばれた時に遅延させる事や、一部処理を書き換えて AnswerDao を経由せずに返答する事(処理コストの低減)が可能になります。
+この様にイ	ンスタンス生成タイミングを処理が呼ばれた時に遅延させる事や、一部処理を書き換えて AnswerDao を経由せずに返答する事(処理コストの低減)が可能になります。
 
 修正後のソースコードはこちらになります。
+
 [PE-BANK ソースコード Proxy パターンを適用](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_05/lessons/lesson_03/java/src/introductiontodesignpatterns)
 
 ---
