@@ -4,7 +4,41 @@
 またハンズオンで Singleton パターンの実装を行いました。
 今回は、Decorator パターンを学んで参ります！
 
-## Decorator パターン
+## 事前準備
+- 前回分までのソースコードを用意します
+  - git 環境がある場合
+    - 既に clone してある場合
+      ```
+      git checkout lesson_03_05
+      ```
+    - clone していない場合
+      ```
+      # git 環境を作成するディレクトリに移動する
+      # 下記は一例
+      mkdir ~/git
+      cd ~/git
+
+      git clone https://github.com/akeyace/IntoroductoinToDesignPatterns.git
+      cd IntoroductoinToDesignPatterns
+      git checkout lesson_03_05
+      ```     
+  - git 環境を作成する場合
+    - 下記を参考に git 環境を構築する
+      - https://git-scm.com/book/ja/v2/使い始める-Gitのインストール
+  - git を使わない場合
+    - 下記ファイルをダウンロードする
+      - https://github.com/akeyace/IntoroductoinToDesignPatterns/archive/lesson_03_05.zip
+- Eclipse で開く
+
+
+#ipse で開く
+  1. Eclipse で 『ファイル』→ 『新規』 → 『Java プロジェクト』を実行
+  1. プロジェクト名に『IntroductionToDesignPatterns』 を指定
+  1. ロケーションにclone (もしくはダウロード) したディレクトリ  (IntoroductoinToDesignPatterns/lessons/lesson_03/java/) を指定
+  1. プロジェクトを開いたら、『実行』 → 『Java アプリケーション』 を実行
+  1. コンソール ウィンドウに色々と表示されたら成功
+
+## Decorator パターン概要
 - 目的
   - オブジェクトに責任(responsibility)を動的に追加する。Decorator パターンは、サブクラス化よりも柔軟な機能拡張方法を提供する
 - 別名
