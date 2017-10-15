@@ -29,9 +29,6 @@
     - 下記ファイルをダウンロードする
       - https://github.com/akeyace/IntoroductoinToDesignPatterns/archive/lesson_03_05.zip
 - Eclipse で開く
-
-
-# Eclipse で開く
   1. Eclipse で 『ファイル』→ 『新規』 → 『Java プロジェクト』を実行
   1. プロジェクト名に『IntroductionToDesignPatterns』 を指定
   1. ロケーションにclone (もしくはダウロード) したディレクトリ  (IntoroductoinToDesignPatterns/lessons/lesson_03/java/) を指定
