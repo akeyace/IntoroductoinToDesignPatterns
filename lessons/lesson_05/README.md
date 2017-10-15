@@ -252,7 +252,7 @@ Decorator パターンは影響範囲を限定出来るのがメリット。
 修正後のソースコードはこちらになります。
 [PE-BANK ソースコード Decorator パターンを適用](https://github.com/akeyace/IntoroductoinToDesignPatterns/tree/lesson_03_07/lessons/lesson_03/java/src/introductiontodesignpatterns)
 
-## 第四回まとめ
+## 第五回まとめ
 今回は、オブジェクトの処理をより効果的に修正するパターンを学びました。
 デザインパターンはスパゲッティになりがちな設計、ソースコードをより解りやすく、より透明にします。
 一見すると難しいですが、何回も繰り返し実装し、不明な点は検索して探し出す事でより深い理解へと辿り着くことが可能です。
