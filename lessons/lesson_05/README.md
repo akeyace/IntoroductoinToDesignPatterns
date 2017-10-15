@@ -31,7 +31,7 @@
 - Eclipse で開く
 
 
-#ipse で開く
+# Eclipse で開く
   1. Eclipse で 『ファイル』→ 『新規』 → 『Java プロジェクト』を実行
   1. プロジェクト名に『IntroductionToDesignPatterns』 を指定
   1. ロケーションにclone (もしくはダウロード) したディレクトリ  (IntoroductoinToDesignPatterns/lessons/lesson_03/java/) を指定
