@@ -113,7 +113,33 @@
 
 #### ソースコード修正
 - 修正内容
-  - WorkInformation クラスの名前を ConcreteWorkInformation に変更し、WorkInformation インタフェースをimplements する
+  - WorkInformation をコピーして ConcreateWorkInformation を作成する
+  - WorkInformation クラスを インタフェースに変更する
+    - クラスをインタフェースに変更する
+      ```diff
+      - public class WorkInformation {
+      + public interface WorkInformation {
+      ```
+    - メンバ変数を削除する
+      ```diff
+      - String workName;
+      - String detail;
+      ```
+    - メソッドのメソッド本文を除去する
+      - エラー表示箇所を右クリックして『メソッド本文を除去します』を選択
+    - メソッドに getOptions, setOptions を追加する
+      ```diff
+        void setDetail(String detail);
+        
+      + HashMap<String, String> getOptions();
+      + void setOptions(String key, String value);
+      ```
+  - ConcreteWorkInformation を修正する
+    - WorkInformation インタフェースをimplements する
+      ```diff
+      - public class ConcreteWorkInformation {
+      + public class ConcreteWorkInformation implements WorkInformation {
+      ```
     - メンバ変数に options, メソッドにgetOptions, setOptions を追加する
       ```diff
         String detail;
@@ -131,8 +157,6 @@
       +   options.put(key, value);
       + }
       ```
-  - WorkInformation インタフェースを追加
-    - インタフェースなのでメソッドを 「void setWorkInformation(String workName, String detail)」のように記述すること
   - WorkInformationDecorator クラスを追加
     ```java
     package introductiontodesignpatterns.workinformation;
@@ -225,25 +249,34 @@
     }
     ```
 
-   - PEEmployee クラスを修正
-     ```diff
-     
-     public void setWorkInformation(Number id, String workName, String detail) {
-     -  workInformations.put(id, new WorkInformation(workName, detail));
-     +  workInformations.put(id, new ConcreteWorkInformation(workName, detail));
-     }
+  - PEEmployee クラスを修正
+    ```diff
+    
+       public void setWorkInformation(Number id, String workName, String detail) {
+    -  workInformations.put(id, new WorkInformation(workName, detail));
+    +  workInformations.put(id, new ConcreteWorkInformation(workName, detail));
+    }
+    ```
 
-     public ArrayList<String> getWorkInfo(Number id) {
-        WorkInformation workInformation = workInformations.get(id);
-     -  return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail()));
-     +  return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail(),
-        workInformation.getOptions().toString()));
-      }
-     ```
+この時点で、main.java を実行してみましょう。
+なんと、同じ結果が返ってきました。
+クラスの変更、追加がありましたが同じ結果が返却される事がわかります。
+Decorator パターンは既存処理への影響を最小限にします。
+
+- 続いて今回追加された Options を反映させましょう。
+  - PEEmployee クラスを修正
+    ```diff
+      public ArrayList<String> getWorkInfo(Number id) {
+      WorkInformation workInformation = workInformations.get(id);
+    - return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail()));
+    + return new ArrayList<String>(Arrays.asList(workInformation.getWorkName(), workInformation.getDetail(),
+    + workInformation.getOptions().toString()));
+    }
+    ```
 
 これで実行してみると……
 ログにの案件情報に「{}」が追加されたのが解ります。
-Decorator パターンは影響範囲を限定出来るのがメリット。
+Decorator パターンのメリットはここからです。
 それでは、Decorator パターンの威力を見てみましょう
 
 - 永田クラスでsetWorkInformationをオーバーライド
