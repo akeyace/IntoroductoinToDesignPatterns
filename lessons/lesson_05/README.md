@@ -69,7 +69,7 @@
   ![960px-decorator_uml_class_diagram svg](https://user-images.githubusercontent.com/1944039/29361022-9a72b7f0-82c0-11e7-9b04-1860b4f703ac.png)
   - wikipedia より
 - 構成要素
-  - Component インタフェース
+  - Component インタフェース
     - 処理の動的追加が出来るようにインタフェースを定義する
   - ConcreteComponent クラス
     - 処理追加が行われるの実態オブジェクト。Component インタフェースを実現する
