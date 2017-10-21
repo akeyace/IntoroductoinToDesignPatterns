@@ -69,21 +69,21 @@
   ![960px-decorator_uml_class_diagram svg](https://user-images.githubusercontent.com/1944039/29361022-9a72b7f0-82c0-11e7-9b04-1860b4f703ac.png)
   - wikipedia より
 - 構成要素
-  - Component クラス
-    - 処理の動的追加が出来るようにインタフェースを定義する
+  - Component インタフェース
+    - 処理の動的追加が出来るようにインタフェースを定義する
   - ConcreteComponent クラス
     - 処理追加が行われるの実態オブジェクト。Component インタフェースを実現する
   - Decorator クラス
     - 実態オブジェクト(ConcereteComponent) への参照を保持する。Component インタフェースを実現する
   - ConcreteDecorator クラス
-    - Component クラスに処理を追加するオブジェクト
+    - ConcreteComponent クラスに処理を追加するオブジェクト
 - 結果
   - 2つのメリット、2つのデメリットを持つ
     - メリット
       - サブクラスによる実装よりも、柔軟な実装が可能
       - 実装する際の影響範囲を小さくすることが出来る
     - デメリット
-      - ConcreteDecorater オブジェクト、Component オブジェクトの同一性がない
+      - ConcreteDecorater オブジェクト、ConcreteComponent オブジェクトの同一性がない
         - 実装時に注意が必要
       - エンジニアが Decorator パターンを理解していないと混乱が生じる可能性がある
 
